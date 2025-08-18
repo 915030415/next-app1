@@ -4,9 +4,10 @@ import { Product } from '@/types/global';
 import Image from 'next/image';
 import { ProductsTitle } from '@/lib/constants';
 import { useRouter } from 'next/navigation';
+import { useSortStore } from '@/store';
 
 export default function Products({ data }: { data: Product[] }) {
-  const value = 'latest';
+  const { value } = useSortStore();
   const router = useRouter();
   const products = [...data];
   if (value !== 'latest') {
