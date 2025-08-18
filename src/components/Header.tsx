@@ -1,19 +1,23 @@
+'use client';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
+import { Title, MenuList } from '@/lib/constants';
+import { Fragment } from 'react';
 
 export default function Header() {
   return (
-    <div className="h-16 px-0 border-b bg-white">
+    <div className="h-16 px-10 border-b bg-white">
       <div className="container flex items-center justify-between h-full">
         <h1 className="text-2xl">
-          <Link href="/">Store</Link>
+          <Link href="/">{Title}</Link>
         </h1>
         <div className="flex justify-end space-x-4 text-sm h-1/3">
-          <Link href="/search">search</Link>
-          <Separator orientation="vertical" />
-          <Link href="/account">account</Link>
-          <Separator orientation="vertical" />
-          <Link href="/card">card</Link>
+          {MenuList.map((item, i) => (
+            <Fragment key={item.text}>
+              {i !== 0 && <Separator orientation="vertical" />}
+              <Link href={item.href}>{item.text}</Link>
+            </Fragment>
+          ))}
         </div>
       </div>
     </div>
